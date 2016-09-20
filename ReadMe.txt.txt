@@ -1,0 +1,1 @@
+Homework was completed as a team, including Philipp Lötscher (loetsphi) and Christopher Steiner (steinch3). So code is redundant.

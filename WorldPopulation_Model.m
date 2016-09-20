@@ -14,3 +14,13 @@ grid on;
 hold on;
 plot(data_t, f(data_t), 'b', data_t, data_p, 'ro', t, y, 'g', t2, y2, 'b');
 legend('Exponential growth exact', 'Estimated World Population', 'Exponential Growth ode45', 'Verhulst ode45');
+clf('reset');
+
+%1.4
+for g = 0.01:0.01:0.05
+    for p = 0.001:0.001:0.005  
+        [t3, y3] = ode45(@(t, y) (g-p*y)*y, [1960 2050], y0);        
+        plot(t3, y3);
+        hold on;        
+    end
+end
