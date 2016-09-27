@@ -13,7 +13,7 @@ side_len = 8; %side length of the squaere (arbitrarily chosen value)
 s1_start = cs_start + [side_len/2; side_len/2];
 s2_start = cs_start + [-side_len/2; side_len/2];
 s3_start = cs_start + [-side_len/2; -side_len/2];
-s4_start = cs_start + [side_len/2; -side_len/2] 
+s4_start = cs_start + [side_len/2; -side_len/2]; 
 
 %initialization (from now an, use homogeneous coordinates)
 cs = [cs_start; 1]; 
