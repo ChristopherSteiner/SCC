@@ -13,3 +13,9 @@ plot(t, y(:,1), t, y(:,2), t, y(:,2)./y(:,1).*100), legend('Prey', 'Predator', '
 % Which after sometime leads to a decrease in prey, which causes a lot of
 % predators to starve. And with only a few predators left the the prey
 % population starts to increase again. Which leads finally to a circle.
+g4 = 5*10^-4;
+t2 = 0:200;
+f2 = @(t, y) [g1 * y(1) - g3 * y(1) * y(2)- g4 * (y(1)^2); -g2*y(2)+g3*y(1)*y(2)];
+[t2, y] = ode45(f2, t2, y0);
+plot(t2, y(:,1), t2, y(:,2)), legend('Prey', 'Predator');
+plot(y(:,1), y(:,2));
