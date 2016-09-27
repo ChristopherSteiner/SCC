@@ -44,7 +44,7 @@ for i = 1:n
     hold on; %retain all upcoming plots in this iteration of the loop    
     plot(sun(1), sun(2), '*r');
     plot(ce(1), ce(2), '*b');
-    plot([e1(1) e2(1) e3(1) e4(1) e1(1)], [e1(2) e2(2) e3(2) e4(2) e1(2)], 'r');
+    plot([e1(1) e2(1) e3(1) e4(1) e1(1)], [e1(2) e2(2) e3(2) e4(2) e1(2)], 'b');
     plot(cm(1), cm(2), '*k');    
     plot([m1(1) m2(1) m3(1) m4(1) m1(1)], [m1(2) m2(2) m3(2) m4(2) m1(2)], 'k');
     axis([-10, 10, -10, 10]);
