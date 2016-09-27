@@ -15,8 +15,6 @@ s2_start = cs_start + [-side_len/2; side_len/2];
 s3_start = cs_start + [-side_len/2; -side_len/2];
 s4_start = cs_start + [side_len/2; -side_len/2] 
 
-trans_matrix = [1 0 0.1; 0 1 0.05; 0 0 1];
-
 %initialization (from now an, use homogeneous coordinates)
 cs = [cs_start; 1]; 
 s1 = [s1_start; 1];
@@ -24,12 +22,17 @@ s2 = [s2_start; 1];
 s3 = [s3_start; 1];
 s4 = [s4_start; 1];
 for i = 1:n
+    cs_trans_matrix = [1 0 0.1; 0 1 0.05; 0 0 1];
+    trans_matrix = [1 0 0.1*i; 0 1 0.05*i; 0 0 1];
+    rotation_matrix = [cosd(45) -sind(45) 0; sind(45) cosd(45) 0; 0 0 1];
+    trans_matrix_b = [1 0 -0.1*i; 0 1 -0.05*i; 0 0 1];
     
-    cs = trans_matrix * cs;
-    s1 = trans_matrix * s1;
-    s2 = trans_matrix * s2
-    s3 = trans_matrix * s3;
-    s4 = trans_matrix * s4;    
+    
+    cs = cs_trans_matrix * cs;
+    s1 = trans_matrix *  rotation_matrix * trans_matrix_b * s1;
+    s2 = trans_matrix *  rotation_matrix * trans_matrix_b * s2
+    s3 = trans_matrix *  rotation_matrix * trans_matrix_b * s3;
+    s4 = trans_matrix *  rotation_matrix * trans_matrix_b * s4;    
     
     %update cs and s1, s2, s3, s4    
     clf; %delete previous plot
