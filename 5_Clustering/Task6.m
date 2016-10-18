@@ -7,7 +7,7 @@ alpha = kmeans(V, 2);
 V(alpha == 1, :) = 0;
 V(alpha == 2, :) = 1;
 I_grey = VectorToGrayscaleImage(V, I_rows, I_columns); 
-imagesc(I_grey);
+imshow(I_grey);
 
 
 % Test of GrayscaleImageToVecotr

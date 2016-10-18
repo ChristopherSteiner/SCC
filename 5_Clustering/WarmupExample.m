@@ -16,3 +16,4 @@ get_silhouette_value(X1, alpha1)
 get_silhouette_value(X2, alpha2)
 
 cluster_kmeans(data10)
+cluster_gdist(data10)
