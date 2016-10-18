@@ -1,7 +1,6 @@
 I = (double(imread('Pics/moon.jpg'))./255);
 I_grey = rgb2gray(I);
-I_rows = size(I_grey, 1);
-I_columns = size(I_grey, 2);
+[I_rows,I_columns] = size(I_grey);
 V = GrayscaleImageToVector(I_grey);
 alpha = kmeans(V, 2);
 V(alpha == 1, :) = 0;
