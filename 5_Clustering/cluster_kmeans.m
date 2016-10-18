@@ -9,9 +9,9 @@ silhouette_values = zeros(5, 1);
 alphas = zeros(data_size1, 5);
 for i=2:5
     alphas(:, i) = kmeans(data,i);
-    silhouete_values(i) = get_silhouette_value(data, alphas(:, i));
+    silhouette_values(i) = get_silhouette_value(data, alphas(:, i));
 end
-[m, in] = max(silhouete_values);
+[m, in] = max(silhouette_values);
 plot_clusters(data, alphas(:, in));
 end
 
