@@ -5,7 +5,7 @@ function [ val ] = get_silhouette_value(X, a)
 cluster_count = max(a);
 s = silhouette(X, a);
 % A vector with the mean per cluster
-cluster_mean = 0;
+cluster_mean = zeroes(cluster_count);
 for i=1:cluster_count
     cluster_mean(i) = mean(s(a == i));
 end
