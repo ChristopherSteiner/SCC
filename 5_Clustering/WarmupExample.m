@@ -16,4 +16,5 @@ get_silhouette_value(X1, alpha1)
 get_silhouette_value(X2, alpha2)
 
 cluster_kmeans(data10)
+%Gauss works better especially for the datasets: 7, 9, 10
 cluster_gdist(data10)
