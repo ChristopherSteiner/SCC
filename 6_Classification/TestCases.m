@@ -2,3 +2,6 @@
 % 2a)
 classify_nearestmean(A1, M1, 3)
 classify_nearestmean(A2, M2, 2)
+
+% 2b)
+classify_nearestneighbor(A1, M1, 3)
