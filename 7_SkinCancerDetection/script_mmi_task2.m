@@ -26,20 +26,34 @@ fprintf('Processed Picture: %s\n',img);
 
 %% Step 2: Calculate the centroid (center of mass) and bounding box
 % regionprops.m is a standard MATLAB function, see manual for details
-IGA = cropped_img_cl;
-IGB = uint8(cropped_img_mask);
-IGC = cropped_img_gs;
 
-% ... HERE COMES YOUR CODE ...
+cr_img_mask = uint8(cropped_img_mask);
+s = regionprops(cr_img_mask, 'Centroid', 'BoundingBox');
 
 %% Step 3: show the cropped RGB picture with the centroid and the bounding box
 
 figure(2)
-imshow(IGA)
+imshow(cropped_img_cl)
 title('Bounding Box');
 hold on;
+plot(s.Centroid(1,1), s.Centroid(1, 2), 'r*', 'LineWidth',3);
+plot(border(:,2), border(:,1), 'g', 'LineWidth', 3)
+rectangle('position', s.BoundingBox, 'Edgecolor', 'r', 'LineWidth', 2);
+hold off;    
 
-% ... HERE COMES YOUR CODE ...
+%% Step 4: use the function calculate_color_task3
+color_table = [
+   255 255 255;
+   204 51 51;
+   153 102 0;
+   51 0 0;
+   51 153 255;
+   0 0 0;
+];
 
-hold off;
-    
+[color_score, count, average_color_diff,variance] = ...
+    calculate_color_task3(cropped_img_cl,cropped_img_mask,color_table,0.01,1);
+
+color_score
+count
+variance
