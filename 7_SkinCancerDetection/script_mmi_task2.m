@@ -54,6 +54,9 @@ color_table = [
 [color_score, count, average_color_diff,variance] = ...
     calculate_color_task3(cropped_img_cl,cropped_img_mask,color_table,0.01,1);
 
-color_score
-count
-variance
+%% Step 5: Calculate asymmetry
+[r, alpha, r_sort, alpha_sort, alpha_index, r_bin, alpha_bin] = ...
+    calculate_polar_coordinates_task4(s.Centroid(1,1), s.Centroid(1, 2), border)
+
+[sfa,sfa_major_axis,ind_major_axis,sfa_minor_axis,ind_minor_axis,asymmetry] = ...
+    calculate_asymmetry_task4(r_bin, 0.1, 140)

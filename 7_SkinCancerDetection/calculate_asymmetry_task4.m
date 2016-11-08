@@ -36,16 +36,16 @@ function [sfa,sfa_major_axis,ind_major_axis,sfa_minor_axis,ind_minor_axis,asymme
 
 %% 1) Initialize sfa and compare adjacent radii, give a point if the 
 %     relative difference is less than rel_diff 
+
 n = length(r_bin);
 sfa = zeros(1,n);
 for i = 1:n
     for j = 1:n/2
-
-    % ... HERE COMES YOUR CODE ...    
-    
+    if(abs(1-(rbin(i))/rbin(j)) > rel_diff)    
+        sfa(i) = sfa(1)+1;  
+    end
     end
 end
-
 %% 2) Find angle with highest score, this is the major symmetry axis
 [sfa_major_axis,ind_major_axis] = max(sfa);
 
