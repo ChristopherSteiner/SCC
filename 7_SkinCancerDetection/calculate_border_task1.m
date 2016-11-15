@@ -42,17 +42,17 @@ I = imread(path_img);
 [x, y] = size(I);
 cropped_img_cl = I(uint16(x*crop_factor):uint16(end-x*crop_factor), ...
     uint16(y*crop_factor):uint16(end-y*crop_factor));
-subplot(2,3,1);
-imshow(I);
-title('Original Image');
+%subplot(2,3,1);
+%imshow(I);
+%title('Original Image');
 
 %% 2) Convert to grey scale using rgb2gray.m 
 %     and show in a subplot(2,3,2)
 
 I_grey = rgb2gray(I);
-subplot(2,3,2);
-imshow(I_grey);
-title('Greyscale Image');
+%subplot(2,3,2);
+%imshow(I_grey);
+%title('Greyscale Image');
 
 %% 3) Cutt away the given percentage on each side, e.g. crop_factor = 0.1,
 %     and show in a subplot(2,3,3)
@@ -61,25 +61,25 @@ title('Greyscale Image');
 I_cropped = I_grey(grey_x*crop_factor:end-grey_x*crop_factor, ...
     grey_y*crop_factor:end-grey_y*crop_factor);
 cropped_img_gs = I_cropped;
-subplot(2,3,3);
-imshow(I_cropped);
-title('Cropped Image');
+%subplot(2,3,3);
+%imshow(I_cropped);
+%title('Cropped Image');
 
 %% 4) Filter using a Gaussian Filter with imgaussfilt.m and a high enough sigma to blur
 %     and show in a subplot(2,3,4)
 
 I_gauss = imgaussfilt(I_cropped, sigma);
-subplot(2,3,4);
-imshow(I_gauss);
-title('Gaussfilter Image');
+%subplot(2,3,4);
+%imshow(I_gauss);
+%title('Gaussfilter Image');
 
 %% 5) Convert to binary picture using Otsu's threshold method using greythres.m and im2bw.m
 %     and show in a subplot(2,3,5)
 
 level = graythresh(I_gauss);
 I_otsu = im2bw(I_gauss, level);
-subplot(2,3,5)
-imshow(I_otsu);
+%subplot(2,3,5)
+%imshow(I_otsu);
 title('Otsu threshhold image');
 
 %% 6) Transform logical IG4 into numeric values, fill holes in the image and keep only the largest area
@@ -88,17 +88,17 @@ title('Otsu threshhold image');
 I_filled = imfill(uint8(~I_otsu));
 I_filled = bwareafilt(logical(I_filled), 1);
 cropped_img_mask = I_filled;
-subplot(2,3,6);
-imshow(I_filled);
-title('Filled holes');
+%subplot(2,3,6);
+%imshow(I_filled);
+%title('Filled holes');
 
 %% 7) Compute the boundaries using bwboundaries.m
 %     and plot them into the same subplot(2,3,6)
 
 bounds = bwboundaries(I_filled);
 border = bounds{1};
-hold on 
-plot(border(:,2), border(:,1), 'g', 'LineWidth', 3)
-hold off
+%hold on 
+%plot(border(:,2), border(:,1), 'g', 'LineWidth', 3)
+%hold off
 
 end

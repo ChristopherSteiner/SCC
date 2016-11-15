@@ -1,5 +1,5 @@
 function [sfa,sfa_major_axis,ind_major_axis,sfa_minor_axis,ind_minor_axis,asymmetry] = ...
-    calculate_asymmetry_task4(r_bin, rel_diff, sfa_thresh)
+    calculate_asymmetry_task4_solution(r_bin, rel_diff, sfa_thresh)
 
 % This function does the following:
 % 1) For each radius r_i in r_bin, a value sfa_i is calculated. For this 
@@ -17,7 +17,7 @@ function [sfa,sfa_major_axis,ind_major_axis,sfa_minor_axis,ind_minor_axis,asymme
 %    axis and receives an asymmetry value of 2.
 %
 % Input :  r_bin           : averaged r-values from function
-%                            calculate_polar_coordinates_task4
+%                            calculate_polar_coordinates
 %          rel_diff        : value between 0 and 1, indicating the relative
 %                            difference for the radii comparison (e.g. 0.1)
 %          sfa_thresh      : threshold for the asymmetry score, e.g. 140
@@ -31,17 +31,28 @@ function [sfa,sfa_major_axis,ind_major_axis,sfa_minor_axis,ind_minor_axis,asymme
 %          asymmetry       : asymmetry value (0,1 or 2)
 % Remarks: none
 % Example: [sfa,sfa_major_axis,ind_major_axis,sfa_minor_axis,ind_minor_axis,asymmetry] = ...
-%    calculate_asymmetry_task4(r_bin);
+%    calculate_asymmetry_task4_solution(r_bin);
 % Date: October,23, 2016; RK
 
 %% 1) Initialize sfa and compare adjacent radii, give a point if the 
 %     relative difference is less than rel_diff 
 n = length(r_bin);
 sfa = zeros(1,n);
-
 for i = 1:n
-    for j = 1:n/2  
-        
+    for j = 1:n/2
+        iminus = i-j;
+        iplus = i+j;
+        if(i-j <= 0) 
+            iminus =(i-j)+n;
+        end
+        if(i+j > n) 
+            iplus = i+j-n;
+        end
+        rel_diff_r1 = abs((r_bin(iplus) - r_bin(iminus))/r_bin(iminus));
+        rel_diff_r2 = abs((r_bin(iplus) - r_bin(iminus))/r_bin(iplus));
+        if(rel_diff_r1 < rel_diff || rel_diff_r2 < rel_diff) 
+            sfa(i)=sfa(i)+1;
+        end
     end
 end
 
@@ -49,13 +60,23 @@ end
 [sfa_major_axis,ind_major_axis] = max(sfa);
 
 % perpendicular axis is the minor axis of symmetry
+if (ind_major_axis +90 >= n)
+    ind_minor_axis = ind_major_axis+90 - n;    
+else
+    ind_minor_axis = ind_major_axis+90;
+end
 
-    % ... HERE COMES YOUR CODE ...  
-
+sfa_minor_axis = sfa(ind_minor_axis);     
 
 %% 3) Calculate the asymmetry value
-
-    % ... HERE COMES YOUR CODE ...  
-
+if (sfa_major_axis >=sfa_thresh && sfa_minor_axis >= sfa_thresh)
+    asymmetry =0;
+elseif (sfa_major_axis >=sfa_thresh && sfa_minor_axis < sfa_thresh)
+    asymmetry = 1;
+elseif (sfa_major_axis <sfa_thresh && sfa_minor_axis < sfa_thresh)
+    asymmetry = 2;
+else
+    asymmetry=NaN;
+end
 
 end
