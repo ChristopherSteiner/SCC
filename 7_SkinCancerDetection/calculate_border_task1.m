@@ -39,12 +39,22 @@ function [cropped_img_cl,cropped_img_gs,cropped_img_mask,border] = ...
 %     and show in a subplot(2,3,1)
 
 I = imread(path_img);
+<<<<<<< HEAD
 [x, y] = size(I);
 cropped_img_cl = I(uint16(x*crop_factor):uint16(end-x*crop_factor), ...
     uint16(y*crop_factor):uint16(end-y*crop_factor));
 %subplot(2,3,1);
 %imshow(I);
 %title('Original Image');
+=======
+[x1, y1, ~] = size(I);
+I_cl_cropped = I(uint16(x1*crop_factor):uint16(end-x1*crop_factor), ...
+    uint16(y1*crop_factor):uint16(end-y1*crop_factor), :);
+cropped_img_cl = I_cl_cropped;
+subplot(2,3,1);
+imshow(I);
+title('Original Image');
+>>>>>>> origin/master
 
 %% 2) Convert to grey scale using rgb2gray.m 
 %     and show in a subplot(2,3,2)
@@ -58,8 +68,8 @@ I_grey = rgb2gray(I);
 %     and show in a subplot(2,3,3)
 
 [grey_x, grey_y] = size(I_grey);
-I_cropped = I_grey(grey_x*crop_factor:end-grey_x*crop_factor, ...
-    grey_y*crop_factor:end-grey_y*crop_factor);
+I_cropped = I_grey(uint16(grey_x*crop_factor):uint16(end-grey_x*crop_factor), ...
+    uint16(grey_y*crop_factor):uint16(end-grey_y*crop_factor));
 cropped_img_gs = I_cropped;
 %subplot(2,3,3);
 %imshow(I_cropped);

@@ -47,16 +47,30 @@ function [color_score, count, average_color_diff,variance] = ...
 R = double(cropped_img_cl(:,:,1));
 G = double(cropped_img_cl(:,:,2));
 B = double(cropped_img_cl(:,:,3));
+color_score = 0;
+count = zeros(length(color_table), 1);
+variance = zeros(3,1);
 
 %% 2) Calculate euclidian distance from the defined colors for each pixel
 %     inside the lesion and count the closest pixels.
 
-% ... HERE COMES YOUR CODE ...
-
+inside = find(cropped_img_mask);
+outside = find(~cropped_img_mask);
+for i=1:length(inside)
+    for c=1:length(color_table)        
+       val(c) = norm(color_table(c, :) - [R(inside(i)) G(inside(i)) B(inside(i))]);
+    end   
+   [~, colorIndex] = min(val);
+   count(colorIndex) = count(colorIndex) + 1;
+end
 %% 3) For each color, that is represented in more than the percantage of
 %     the pixels (defined by threshold), a point is given for the color score
-
-% ... HERE COMES YOUR CODE ...
+color_sum = sum(count);
+for c=1:length(color_table)  
+    if(count(c)/color_sum > threshold)
+        color_score = color_score + 1;
+    end
+end
 
 %% 4) Calculate the euclidian distance between the average pixel inside and
 %     outside the lesion
@@ -67,7 +81,9 @@ average_color_diff = norm(average_inside - average_outside);
 
 %% 5) Calculate the variance of the R,G,B channels inside the lesion using var.m
 
-% ... HERE COMES YOUR CODE ...
+variance(1) = var(R(inside));
+variance(2) = var(G(inside));
+variance(3) = var(B(inside));
 
 %% 6) Do plots if plot_image is set to 1
 if (plot_image)
