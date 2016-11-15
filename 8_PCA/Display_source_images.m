@@ -18,7 +18,7 @@ end
 
 figure();imagesc(Img);colormap('gray');
 axis equal;
-pause;
+%pause;
 
 
 end

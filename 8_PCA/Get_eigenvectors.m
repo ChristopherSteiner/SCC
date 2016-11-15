@@ -8,6 +8,6 @@ C = cov(data_mat);
 for cont=1:length(sorted)
     V(:,cont)=V_unsorted(:,index(cont));
 end 
- V = V(:, 1:k);
+ V = V(:, k);
 end
 
