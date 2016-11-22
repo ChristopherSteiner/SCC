@@ -11,4 +11,4 @@ x = -pi :0.1: pi;
 figure(1)
 hold on
 surf(X, Y, urf(X,Y));
-quiver3(X,Y,urf(X,Y),f1(X,Y),f2(X,Y),f1(X,Y).^2+f2(X,Y));
+quiver3(X,Y,urf(X,Y),f1(X,Y),f2(X,Y),f1(X,Y).^2+f2(X,Y).^2);
