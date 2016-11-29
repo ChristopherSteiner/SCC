@@ -1,7 +1,7 @@
 % Task 1.3
 syms x y
 urf = matlabFunction(((x.^2-1)+(y.^2-4)+(x.^2-1)*(y.^2-4)) / (x.^2+y.^2+1).^2);
-grad = jacobian(((x.^2-1)+(y.^2-4)+(x.^2-1)*(y.^2-4)) / (x.^2+y.^2+1).^2)
+grad = jacobian(((x.^2-1)+(y.^2-4)+(x.^2-1)*(y.^2-4)) / (x.^2+y.^2+1).^2);
 f1 = matlabFunction(grad(1));
 f2 = matlabFunction(grad(2));
 
