@@ -1,0 +1,11 @@
+x = 0:0.1:2;
+t = 0:0.005:1.5;
+L =2;
+f = @(x) 4*(x/L).*(1-x/L);
+ui =  f(x);
+u0 = @(t) exp(-2.*t) .* sin(50.*t);
+uL = @(t) exp(-3.*t) .* cos(50.*t); 
+k = 1;
+u = Heat_PDE_Task1_7( x, t, ui, u0(t), uL(t), k);
+surf(x, t, u');
+title('Heat Conduction');
