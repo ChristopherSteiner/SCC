@@ -14,7 +14,7 @@ for ti=1:length(t)
     for xi=1:length(x)
         for n=1:40
             u(ti, xi) = u(ti, xi) + sin(n.*pi.*x(xi)/L) * (a(n) ...
-                * cos(n*pi*c*ti/L)+b(n)*sin(n*pi*c*ti/L));
+                * cos(n*pi*c*t(ti)/L)+b(n)*sin(n*pi*c*t(ti)/L));
         end
     end
 end
