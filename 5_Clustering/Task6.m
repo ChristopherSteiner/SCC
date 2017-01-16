@@ -10,7 +10,7 @@ imshow(I_grey);
 
 
 % Test of GrayscaleImageToVecotr
-%GrayscaleImageToVector([1 2 3; 4 5 6;])
+GrayscaleImageToVector([1 2 3; 4 5 6;])
 
 % Test of VectorToGrayscaleImage
 %VectorToGrayscaleImage([1;4;2;5;3;6],2,3)

@@ -29,9 +29,5 @@ if(alpha < 0.5)
 else
     error('Alpha nicht < 0.5');
 end
-
-
-
-
 end
 

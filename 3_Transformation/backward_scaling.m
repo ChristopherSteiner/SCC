@@ -5,6 +5,8 @@
 function [ result ] = backward_scaling( source, a)
     xMaxNew = ceil(size(source, 1) * a);
     yMaxNew = ceil(size(source, 2) * a);
+    %backward scalling matrix, divide the scale factor
+    %so that we can find the old coordinates
     scaleMatrix = [1/a 0 0; 0 1/a 0; 0 0 1];
     for x=1:xMaxNew
        for y=1:yMaxNew

@@ -7,11 +7,15 @@ d = size(A,2);
 N = size(A,1)/k;
 pd = zeros(size(M, 1), k);
 for i=1:k
+    % create partial matrix 
     T = A((i-1)*N+1:N*i, :);
-    for j=1:d        
+    for j=1:d       
+        % calc mean per partial matrix and dimension 
         means_matrix(i,j) = mean(T(:, j));
     end    
+    % get covariance matrix
     cov_mat = cov(T);
+    % use gaussian mixture model
     pd(:, i) = mvnpdf(M, means_matrix(i,:), cov_mat);
 end
 for i=1:size(M,1)
